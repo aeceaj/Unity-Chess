@@ -45,7 +45,6 @@ public class ArtificialIdiot : MonoBehaviour
                 }
                 GetBestMove();
                 Board.SelectedPiece = bestMove.piece.Rule;
-                Board.IsActive = true;
                 selectDone = true;
                 timer = 0;
             }
@@ -82,15 +81,15 @@ public class ArtificialIdiot : MonoBehaviour
 
     private int EvaluateMove(PieceMove pm)
     {
-        MoveController targetTemp = Board.GetBoard(pm.target);
+        MoveController targetTemp = Board.GetPiece(pm.target);
         Vector2Int coordTemp = pm.piece.Coord;
-        Board.SetBoard(pm.piece.Coord, null);
-        Board.SetBoard(pm.target, pm.piece);
+        Board.SetPiece(pm.piece.Coord, null);
+        Board.SetPiece(pm.target, pm.piece);
         pm.piece.Coord = pm.target;
         int result = Board.Evaluate();
         pm.piece.Coord = coordTemp;
-        Board.SetBoard(pm.target, targetTemp);
-        Board.SetBoard(pm.piece.Coord, pm.piece);
+        Board.SetPiece(pm.target, targetTemp);
+        Board.SetPiece(pm.piece.Coord, pm.piece);
         return result;
     }
 

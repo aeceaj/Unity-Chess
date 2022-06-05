@@ -7,7 +7,7 @@ public class PawnMove : MoveController
         base.Move(target);
         if ((Rule.Colour + 8) % 9 + target.y == 7)
         {
-            Board.IsActive = true;
+            Board.SelectedPiece = Rule;
             Promotion.Panel.gameObject.SetActive(true);
             Promotion.Panel.ProPawn = this;
         }

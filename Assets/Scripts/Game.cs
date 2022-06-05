@@ -10,8 +10,15 @@ public class Game : MonoBehaviour
     public const int BlackTurn = -1;
     public const int End = -2;
 
+    /// <summary>
+    /// Current player. 1 for white and -1 for black.
+    /// </summary>
     public static int State { get; set; }
     public static Dictionary<string, KingRule> Kings { get; set; }
+
+    /// <summary>
+    /// The Transform of the mark beside the board.
+    /// </summary>
     public static Transform Mark { get; set; }
 
     private static Text message;
@@ -70,6 +77,11 @@ public class Game : MonoBehaviour
         Mark.position = new Vector3(-5, -Mark.position.y);
     }
 
+    /// <summary>
+    /// Whether the king is checked.
+    /// </summary>
+    /// <param name="colour">The king's colour.</param>
+    /// <returns>True if checked.</returns>
     public static bool Check(string colour)
     {
         foreach (MoveController obj in Board.board)
@@ -90,6 +102,11 @@ public class Game : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Whether the king is checkmated.
+    /// </summary>
+    /// <param name="colour">The king's colour.</param>
+    /// <returns>True if checkmated.</returns>
     public static bool Checkmate(string colour)
     {
         if (!Check(colour))
@@ -104,7 +121,7 @@ public class Game : MonoBehaviour
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        if (obj.Rule.IsValid(i, j) && !obj.Rule.IsIllegal(i, j))
+                        if (obj.Rule.IsValid(i, j) && obj.Rule.IsLegal(i, j))
                         {
                             return false;
                         }

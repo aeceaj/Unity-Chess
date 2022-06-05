@@ -39,7 +39,7 @@ public class KingRule : RuleController
         {
             for (int i = 3; i > 1; i--)
             {
-                if (Board.IsOccupied(i, Entity.Coord.y) || IsIllegal(i, Entity.Coord.y))
+                if (Board.IsOccupied(i, Entity.Coord.y) || !IsLegal(i, Entity.Coord.y))
                 {
                     return (false, null);
                 }
@@ -54,7 +54,7 @@ public class KingRule : RuleController
         {
             for (int i = 5; i < 7; i++)
             {
-                if (Board.IsOccupied(i, Entity.Coord.y) || IsIllegal(i, Entity.Coord.y))
+                if (Board.IsOccupied(i, Entity.Coord.y) || !IsLegal(i, Entity.Coord.y))
                 {
                     return (false, null);
                 }

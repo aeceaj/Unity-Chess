@@ -21,7 +21,7 @@ public class MoveController : MonoBehaviour
 
     protected virtual void Start()
     {
-        Board.SetBoard(Coord, this);
+        Board.SetPiece(Coord, this);
     }
 
     public void Pick()
@@ -29,18 +29,17 @@ public class MoveController : MonoBehaviour
         rend.sortingOrder = 3;
         IsSelected = true;
         Board.SelectedPiece = Rule;
-        Board.IsActive = true;
     }
 
     public virtual void Move(Vector2Int target)
     {
-        Board.SetBoard(Coord, null);
-        Board.SetBoard(target, this);
+        Board.SetPiece(Coord, null);
+        Board.SetPiece(target, this);
         Coord = target;
         transform.position = Board.CrdToPos(target);
         rend.sortingOrder = 2;
         IsSelected = false;
-        Board.IsActive = false;
+        Board.SelectedPiece = null;
         if (!HaveMoved)
         {
             HaveMoved = true;
@@ -60,11 +59,11 @@ public class MoveController : MonoBehaviour
             rend.sortingOrder = 2;
             IsSelected = false;
         }
-        Board.IsActive = false;
+        Board.SelectedPiece = null;
     }
 
     public void Capture(Vector2Int target)
     {
-        Destroy(Board.GetBoard(target).gameObject);
+        Destroy(Board.GetPiece(target).gameObject);
     }
 }

@@ -27,7 +27,7 @@ public class PlayerAction : MonoBehaviour
         if (moveCtrl.IsSelected)
         {
             Vector2Int target = Board.PosToCrd(transform.position);
-            if (!Board.OutOfRange(target) && ruleCtrl.IsValid(target) && !ruleCtrl.IsIllegal(target))
+            if (!Board.OutOfRange(target) && ruleCtrl.IsValid(target) && ruleCtrl.IsLegal(target))
             {
                 if (ruleCtrl.IsEnemy(target))
                 {

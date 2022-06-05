@@ -3,12 +3,14 @@ using UnityEngine;
 // 此处不能生成王，会与Game.Kings产生冲突
 public class Spawn : MonoBehaviour
 {
+    // Prefabs
     public QueenRule queenPre;
     public BishopRule bishopPre;
     public KnightRule knightPre;
     public RookRule rookPre;
     public PawnRule pawnPre;
 
+    // Sprites
     public Sprite queenBlack;
     public Sprite bishopBlack;
     public Sprite knightBlack;

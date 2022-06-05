@@ -50,7 +50,7 @@ public class Arranger : MonoBehaviour
             }
             else if (!Board.IsActive && !name.Contains("King")) // 此处防止王被移除
             {
-                Board.SetBoard(moveCtrl.Coord, null);
+                Board.SetPiece(moveCtrl.Coord, null);
                 Destroy(gameObject);
             }
         }

@@ -68,7 +68,7 @@ public class Square : MonoBehaviour
 
     private bool ValidSquare()
     {
-        return Board.SelectedPiece.IsValid(coord) && !Board.SelectedPiece.IsIllegal(coord);
+        return Board.SelectedPiece.IsValid(coord) && Board.SelectedPiece.IsLegal(coord);
     }
 
     private bool CheckSquare()
@@ -77,11 +77,11 @@ public class Square : MonoBehaviour
         {
             return false;
         }
-        if (Game.Check("White") && Board.GetBoard(coord).name == "WhiteKing")
+        if (Game.Check("White") && Board.GetPiece(coord).name == "WhiteKing")
         {
             return true;
         }
-        if (Game.Check("Black") && Board.GetBoard(coord).name == "BlackKing")
+        if (Game.Check("Black") && Board.GetPiece(coord).name == "BlackKing")
         {
             return true;
         }

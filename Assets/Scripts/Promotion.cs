@@ -4,11 +4,13 @@ public class Promotion : MonoBehaviour
 {
     public static Promotion Panel { get; private set; }
 
+    // Prefabs
     public QueenRule queenPre;
     public KnightRule knightPre;
     public RookRule rookPre;
     public BishopRule bishopPre;
 
+    // Sprites
     public Sprite queenBlack;
     public Sprite knightBlack;
     public Sprite rookBlack;
@@ -24,10 +26,14 @@ public class Promotion : MonoBehaviour
 
     public void ExitPromotion()
     {
-        Board.IsActive = false;
+        Board.SelectedPiece = null;
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Initialize the promoted piece.
+    /// </summary>
+    /// <param name="instance">The RuleController of the piece.</param>
     private void Setup(RuleController instance)
     {
         // RuleController.Awake()调用无效，需要重新设定Colour

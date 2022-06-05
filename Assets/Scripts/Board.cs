@@ -4,19 +4,48 @@ using UnityEngine;
 public static class Board
 {
     public static MoveController[,] board;
-    public static bool IsActive { get; set; }
+
+    /// <summary>
+    /// Whether there is a piece being selected.
+    /// </summary>
+    public static bool IsActive
+    {
+        get
+        {
+            return SelectedPiece != null;
+        }
+    }
+
+    /// <summary>
+    /// The RuleController of the currently selected piece.
+    /// </summary>
     public static RuleController SelectedPiece { get; set; }
 
-    public static MoveController GetBoard(Vector2Int crd)
+    /// <summary>
+    /// Get one piece on the board.
+    /// </summary>
+    /// <param name="crd">The coordinate of the square.</param>
+    /// <returns>The MoveController of the piece if exists. Returns null otherwise.</returns>
+    public static MoveController GetPiece(Vector2Int crd)
     {
         return board[crd.x, crd.y];
     }
 
-    public static void SetBoard(Vector2Int crd, MoveController obj)
+    /// <summary>
+    /// Set one piece on the board. Use null to clear the square.
+    /// </summary>
+    /// <param name="crd">The coordinate of the square.</param>
+    /// <param name="obj">The MoveController of the piece.</param>
+    public static void SetPiece(Vector2Int crd, MoveController obj)
     {
         board[crd.x, crd.y] = obj;
     }
 
+    /// <summary>
+    /// Whether there is a piece on the square.
+    /// </summary>
+    /// <param name="crd">The coordinate of the square.</param>
+    /// <returns></returns>
     public static bool IsOccupied(Vector2Int crd)
     {
         return board[crd.x, crd.y] != null;
@@ -58,7 +87,7 @@ public static class Board
     }
 
     /// <summary>
-    /// 计算当前棋局分值
+    /// Calculate the score of the game.
     /// </summary>
     /// <returns></returns>
     public static int Evaluate()
